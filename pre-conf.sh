@@ -13,7 +13,7 @@
  wget https://github.com/liblime/LibLime-Koha/archive/v4.18.06.tar.gz
  tar -xvf v4.18.06.tar.gz
  rm v4.18.06.tar.gz
- mv v4.18.06.tar.gz koha
+ mv LibLime-Koha-4.18.06 koha
  cd  koha/
  perl Makefile.PL
  make
