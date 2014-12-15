@@ -1,6 +1,15 @@
 #!/bin/bash
 
+/usr/bin/mysqld_safe &
+ sleep 10s
 
-#reason of this script is that dockerfile only execute one command at the time but we need sometimes at the moment we create 
-#the docker image to run more that one software for expecified configuration like when you need mysql running to chnage or create
-#database for the container ...
+ mysqladmin -u root password mysqlpsswd
+ mysqladmin -u root -pmysqlpsswd reload
+ mysqladmin -u root -pmysqlpsswd create koha
+ 
+ echo "GRANT ALL ON drupal.* TO kohaadmin@localhost IDENTIFIED BY 'kohadbpasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
+
+
+
+killall mysqld
+sleep 10s
