@@ -7,7 +7,7 @@
  mysqladmin -u root -pmysqlpsswd reload
  mysqladmin -u root -pmysqlpsswd create koha
  
- echo "GRANT ALL ON drupal.* TO kohaadmin@localhost IDENTIFIED BY 'kohadbpasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
+ echo "GRANT ALL ON koha.* TO kohaadmin@localhost IDENTIFIED BY 'katikoan'; flush privileges; " | mysql -u root -pmysqlpsswd
  
  cd /opt
  wget https://github.com/liblime/LibLime-Koha/archive/v4.18.06.tar.gz
