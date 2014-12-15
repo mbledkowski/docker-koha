@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y -q  mysql-server \
                     && rm -rf /var/lib/apt/lists/*
 
 #https://www.digitalocean.com/community/tutorials/how-to-install-solr-on-ubuntu-14-04
+#http://priyadarsanam.blogspot.com/2011/07/installation-of-liblime-koha-4206-on.html
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
 #run it again ... use for conf for service ... when run the first time ...
