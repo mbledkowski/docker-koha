@@ -15,7 +15,7 @@
  rm v4.18.06.tar.gz
  mv v4.18.06.tar.gz koha
  cd  koha/
- perl Makefile.PL INTRANET_CGI_DIR=/www/cgi-bin
+ perl Makefile.PL
  make
  make test
  make install
