@@ -1,6 +1,5 @@
-#It will be use for reference only ... to create pre-define extruture
-#name of container: docker-xxxxx
-#versison of container: xx.xx.x
+#name of container: docker-liblime-koha
+#versison of container: 0.1.0
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -9,13 +8,15 @@ ENV HOME /root
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN apt-get update && apt-get install -y -q xxxxxxxxxxxxx \
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y -q  mysql-server \
+                                        openjdk-7-jdk \
+                                        solr-tomcat \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
-#General variable definition....
-
+#https://www.digitalocean.com/community/tutorials/how-to-install-solr-on-ubuntu-14-04
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
 #run it again ... use for conf for service ... when run the first time ...
@@ -25,7 +26,10 @@ RUN chmod +x /etc/my_init.d/startup.sh
 
 
 ##Adding Deamons to containers
-#refers to dockerfile_reference
+# to add mysqld deamon to runit
+RUN mkdir /etc/service/mysqld
+COPY mysqld.sh /etc/service/mysqld/run
+RUN chmod +x /etc/service/mysqld/run
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
@@ -43,17 +47,15 @@ COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
 
-
 #add files and script that need to be use for this container
 #include conf file relate to service/daemon 
 #additionsl tools to be use internally 
+RUN mkdir /usr/java
+RUN ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
-EXPOSE #ports
-
-#creatian of volume 
-#VOLUME 
+EXPOSE 5000
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
