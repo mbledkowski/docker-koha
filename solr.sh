@@ -4,5 +4,5 @@
 # If you omit that part, the command will be run as root.
 
 sleep 15
-cd /opt/solr-4.9.1/
+cd /opt/solr-4.9.1/koha/
 exec  java -jar start.jar >>/var/log/solr.log 2>&1
