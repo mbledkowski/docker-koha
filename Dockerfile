@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y -q  mysql-server \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
+                    
+RUN mkdir -p  /usr/java
+RUN ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
 
 #https://www.digitalocean.com/community/tutorials/how-to-install-solr-on-ubuntu-14-04
 #http://priyadarsanam.blogspot.com/2011/07/installation-of-liblime-koha-4206-on.html
@@ -47,12 +50,6 @@ RUN chmod +x /sbin/pre-conf \
 COPY backup.sh /sbin/backup
 RUN chmod +x /sbin/backup
 VOLUME /var/backups
-
-#add files and script that need to be use for this container
-#include conf file relate to service/daemon 
-#additionsl tools to be use internally 
-RUN mkdir /usr/java
-RUN ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
