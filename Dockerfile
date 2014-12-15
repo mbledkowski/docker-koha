@@ -35,6 +35,11 @@ RUN mkdir /etc/service/mysqld
 COPY mysqld.sh /etc/service/mysqld/run
 RUN chmod +x /etc/service/mysqld/run
 
+# to add solr deamon to runit
+RUN mkdir /etc/service/solr
+COPY solr.sh /etc/service/solr/run
+RUN chmod +x /etc/service/solr/run
+
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
 COPY pre-conf.sh /sbin/pre-conf
