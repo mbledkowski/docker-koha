@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y -q software-properties-common \
                                         python-software-properties \
                                         mysql-server \
                                         openjdk-7-jdk \
-                                        solr-tomcat \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
