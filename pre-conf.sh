@@ -10,7 +10,17 @@
  echo "GRANT ALL ON drupal.* TO kohaadmin@localhost IDENTIFIED BY 'kohadbpasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
  
  cd /opt
- wget 
+ wget https://github.com/liblime/LibLime-Koha/archive/v4.18.06.tar.gz
+ tar -xvf v4.18.06.tar.gz
+ rm v4.18.06.tar.gz
+ mv v4.18.06.tar.gz koha
+ cd  koha/
+ perl Makefile.PL INTRANET_CGI_DIR=/www/cgi-bin
+ make
+ make test
+ make install
+ KOHA_CONF=/opt/koha/etc/koha-conf.xml plackup app.psgi
+ 
  
  cd /opt
  wget http://archive.apache.org/dist/lucene/solr/4.9.1/solr-4.9.1.tgz
