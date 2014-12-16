@@ -11,6 +11,8 @@ ENV HOME /root
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q software-properties-common \
                                         python-software-properties \
+                                        libgd2-xpm-dev \
+                                        build-essential \
                                         mysql-server \
                                         openjdk-7-jdk \
                     && apt-get clean \
