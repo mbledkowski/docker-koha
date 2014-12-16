@@ -9,6 +9,9 @@
  
  echo "GRANT ALL ON koha.* TO kohaadmin@localhost IDENTIFIED BY 'katikoan'; flush privileges; " | mysql -u root -pmysqlpsswd
  
+ cpan MARC::Crosswalk::DublinCore GD GD::Barcode::UPCE Email::Date HTML::Scrubber Algorithm::CheckDigits::M43_001 Biblio::EndnoteStyle
+ perl /etc/perl/CPAN/Config.pm 
+ 
  cd /opt
  wget https://github.com/liblime/LibLime-Koha/archive/v4.18.06.tar.gz
  tar -xvf v4.18.06.tar.gz
