@@ -28,7 +28,7 @@ cd /opt
  rm v4.18.06.tar.gz
  mv LibLime-Koha-4.18.06 koha
  cd  koha/
- perl Makefile.PL --defaultdeps
+ perl Makefile.PL --defaultdeps PREFIX=/opt/koha
  make
  make test
  make install
