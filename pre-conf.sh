@@ -31,7 +31,7 @@ cd /opt
  #remove zebra from defaults 
  sed  -i "s/'INSTALL_ZEBRA'     => 'yes',/'INSTALL_ZEBRA'     => 'no',/" Makefile.PL
  
- perl Makefile.PL --defaultdeps PREFIX=/opt/koha
+ perl Makefile.PL --defaultdeps PERL_MODULE_DIR=/usr/local/share/perl/5.18.2 PREFIX=/opt/koha
  make
  make test
  make install
