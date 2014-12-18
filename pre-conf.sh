@@ -9,6 +9,7 @@
  koha-create --create-db library
 
  #security tweak
+  mysql_secure_installation
   mysqladmin -u root password mysqlpsswd
   mysqladmin -u root -pmysqlpsswd reload
 
