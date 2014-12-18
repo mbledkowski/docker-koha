@@ -1,4 +1,4 @@
-#name of container: docker-liblime-koha
+#name of container: docker-koha
 #versison of container: 0.1.0
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
@@ -8,23 +8,15 @@ ENV HOME /root
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
+RUN echo deb http://debian.koha-community.org/koha squeeze main | sudo tee /etc/apt/sources.list.d/koha.list
+RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
-RUN apt-get update && apt-get install -y -q software-properties-common \
-                                        python-software-properties \
-                                        libgd2-xpm-dev \
-                                        build-essential \
-                                        mysql-server \
-                                        openjdk-7-jdk \
+RUN apt-get update && apt-get install -y -q koha-common \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
                     
-RUN mkdir -p  /usr/java
-RUN ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
-
-#https://www.digitalocean.com/community/tutorials/how-to-install-solr-on-ubuntu-14-04
-#http://priyadarsanam.blogspot.com/2011/07/installation-of-liblime-koha-4206-on.html
-##startup scripts  
+##startup script
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
 #run it again ... use for conf for service ... when run the first time ...
 RUN mkdir -p /etc/my_init.d
@@ -38,10 +30,10 @@ RUN mkdir /etc/service/mysqld
 COPY mysqld.sh /etc/service/mysqld/run
 RUN chmod +x /etc/service/mysqld/run
 
-# to add solr deamon to runit
-RUN mkdir /etc/service/solr
-COPY solr.sh /etc/service/solr/run
-RUN chmod +x /etc/service/solr/run
+# to add apache2 deamon to runit
+RUN mkdir /etc/service/apache2
+COPY apache2.sh /etc/service/apache2/run
+RUN chmod +x /etc/service/apache2/run
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
