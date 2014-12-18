@@ -3,16 +3,25 @@
 /usr/bin/mysqld_safe &
  sleep 10s
 
- mysqladmin -u root password mysqlpsswd
- mysqladmin -u root -pmysqlpsswd reload
- mysqladmin -u root -pmysqlpsswd create koha
+
  
- echo "GRANT ALL ON koha.* TO kohaadmin@localhost IDENTIFIED BY 'kohapsswd'; flush privileges; " | mysql -u root -pmysqlpsswd
- 
+ #need to edit or add file /etc/koha/koha-sites.conf
  a2enmod rewrite
+ a2enmod cgi
  koha-create --create-db library
+ #security tweak
+  mysqladmin -u root password mysqlpsswd
+  mysqladmin -u root -pmysqlpsswd reload
+ #apache2 conf
+ #default ports /etc/apache2/ports.conf   need to add Listen 80  and 8080
  a2enmod deflate
  a2ensite library
+ #tweat /etc/hosts if nesesary ....
+ #need to be added after_install scritp to get password of default user koha_library
+ #xmlstarlet sel -t -v 'yazgfs/config/pass' /etc/koha/sites/library/koha-conf.xml
+ 
+ #need to run only afte upgrade 
+ #koha-rebuild-zebra -v -f library
  
 killall mysqld
 sleep 10s
