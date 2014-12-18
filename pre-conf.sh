@@ -9,6 +9,10 @@
  
  echo "GRANT ALL ON koha.* TO kohaadmin@localhost IDENTIFIED BY 'kohapsswd'; flush privileges; " | mysql -u root -pmysqlpsswd
  
-
+ a2enmod rewrite
+ koha-create --create-db library
+ a2enmod deflate
+ a2ensite library
+ 
 killall mysqld
 sleep 10s
