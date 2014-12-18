@@ -1,4 +1,4 @@
-docker-liblime-koha
+docker-koha
 ===================
 
 Open-source integrated library system running on container. 
