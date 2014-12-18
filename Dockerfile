@@ -12,6 +12,7 @@ RUN echo deb http://debian.koha-community.org/koha trusty main | sudo tee /etc/a
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q koha-common \
+                                        mysql-server \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
@@ -53,7 +54,7 @@ VOLUME /var/backups
 
 # to allow access from outside of the container  to the container service
 # at that ports need to allow access from firewall if need to access it outside of the server. 
-EXPOSE 5000 8983 80
+EXPOSE 8080 80
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
