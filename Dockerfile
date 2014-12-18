@@ -11,8 +11,7 @@ ENV HOME /root
 RUN echo deb http://debian.koha-community.org/koha squeeze-dev main | sudo tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
-RUN apt-get update && apt-get install -y -q koha-deps \
-                                        koha-perldeps \
+RUN apt-get update && apt-get install -y -q apache2 \
                                         mysql-server \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
