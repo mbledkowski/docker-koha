@@ -12,7 +12,9 @@
  #need to add this to others container using apache2
  echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
-
+ 
+ koha-post-install-setup
+  
  #need to edit or add file /etc/koha/koha-sites.conf
  a2enmod rewrite
  a2enmod cgi
@@ -25,11 +27,8 @@
   
  a2enmod deflate
  a2ensite library
+ a2dissite 000-default
+ rm -R /var/www/html/
 
- #tweat /etc/hosts if nesesary ....
-
- #need to run only afte upgrade 
- #koha-rebuild-zebra -v -f library
- 
 killall mysqld
 sleep 5s
