@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 /usr/bin/mysqld_safe &
  sleep 5s
@@ -11,7 +12,8 @@
  #need to add this to others container using apache2
  echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
- koha-post-install-setup
+ a2enmod rewrite
+ a2enmod suexec
  #need to edit or add file /etc/koha/koha-sites.conf
  a2enmod cgi
  koha-create --create-db library
