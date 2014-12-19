@@ -40,6 +40,11 @@ RUN mkdir /etc/service/apache2
 COPY apache2.sh /etc/service/apache2/run
 RUN chmod +x /etc/service/apache2/run
 
+# to add zebra deamon to runit
+RUN mkdir /etc/service/zebra
+COPY zebra.sh /etc/service/zebra/run
+RUN chmod +x /etc/service/zebra/run
+
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
 COPY pre-conf.sh /sbin/pre-conf
