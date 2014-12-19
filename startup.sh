@@ -4,6 +4,7 @@
 set -e
 
 if [ -f /etc/configured ]; then
+        a2enmod suexec
         echo 'already configured'
 else
       #code that need to run only one time ....
