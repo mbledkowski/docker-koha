@@ -8,25 +8,16 @@
  sed -i 's/INTRAPORT="80"/INTRAPORT="8080"/' /etc/koha/koha-sites.conf
  sed -i 's/INTRASUFFIX="-intra"/INTRASUFFIX=""/' /etc/koha/koha-sites.conf
  echo "Listen 8080" >> /etc/apache2/ports.conf
- 
  #need to add this to others container using apache2
  echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
- 
  koha-post-install-setup
-  
  #need to edit or add file /etc/koha/koha-sites.conf
- a2enmod rewrite
  a2enmod cgi
  koha-create --create-db library
-
  #security tweak
-  #mysql_secure_installation
   mysqladmin -u root password mysqlpsswd
   mysqladmin -u root -pmysqlpsswd reload
-  
- a2enmod deflate
- a2ensite library
  a2dissite 000-default
  rm -R /var/www/html/
 
