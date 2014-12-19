@@ -3,7 +3,10 @@
 # `/sbin/setuser www-data` runs the given command as the user `www-data`.
 # If you omit that part, the command will be run as root.
 
+set -e
+
 read pid cmd state ppid pgrp session tty_nr tpgid rest < /proc/self/stat
+
 trap "kill -TERM -$pgrp; exit" EXIT TERM KILL SIGKILL SIGTERM SIGQUIT
 
 source /etc/apache2/envvars
