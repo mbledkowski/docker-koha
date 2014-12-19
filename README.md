@@ -24,3 +24,5 @@ Your Library is now setup in Koha.
 
 
 The OPAC client with be at http://ipaddress:80/ The staff client will be at http://ipaddress:8080/
+
+note: 80 and 8080 need to replace to the external port use by docker for this two internal port ..
