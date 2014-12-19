@@ -9,7 +9,7 @@ docker run -d -p 80 -p 8080 quantumobject/docker-koha
 
 need to run this command to check the password for user koha_library :
 
-docker log container_id
+docker logs container_id
 
 and then use this password to log in with user name for the web install at http://ipaddress:8080/ 
 
