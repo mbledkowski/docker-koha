@@ -13,6 +13,10 @@ docker logs container_id
 
 and then use this password to log in with user name for the web install at http://ipaddress:8080/ 
 
+if this page show error 500 internal server error them need to execute this command :
+
+docker exec -it container_id koha-post-install-setup
+
 After the web install, you should be redirected to the staff client login screen.
 Login with koha user name and password.
 Click on the More dropdown menu.
