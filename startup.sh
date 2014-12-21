@@ -11,5 +11,4 @@ else
         #needed for fix problem with ubuntu and cron
         update-locale 
         date > /etc/configured
-        koha-post-install-setup
 fi
