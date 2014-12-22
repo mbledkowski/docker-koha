@@ -13,6 +13,11 @@ RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q apache2 \
                                         mysql-server \
+                    && apt-get clean \
+                    && rm -rf /tmp/* /var/tmp/*  \
+                    && rm -rf /var/lib/apt/lists/*
+                    
+RUN apt-get update && a2dismod mpm_event && a2enmod mpm_prefork && apt-get install -f -y -q libapache2-mpm-itk \
                                         koha-common \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
