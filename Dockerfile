@@ -13,14 +13,11 @@ RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q apache2 \
                                         mysql-server \
+                                        koha-common \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -f -y -q koha-common \
-                    && apt-get clean \
-                    && rm -rf /tmp/* /var/tmp/*  \
-                    && rm -rf /var/lib/apt/lists/*
-                    
+
 ##startup script
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
 #run it again ... use for conf for service ... when run the first time ...
