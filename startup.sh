@@ -20,7 +20,7 @@ else
                 rm -R /var/www/html/
         killall mysqld
         sleep 5s
-        echo "Password  $(xmlstarlet sel -t -v 'yazgfs/config/pass' /etc/koha/sites/library/koha-conf.xml)"
+        echo "Password:  $(xmlstarlet sel -t -v 'yazgfs/config/pass' /etc/koha/sites/library/koha-conf.xml)"
         #needed for fix problem with ubuntu and cron
         update-locale 
         date > /etc/configured
