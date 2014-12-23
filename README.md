@@ -49,5 +49,7 @@ docker exec -it container_id after_install
 The OPAC client will be at http://ipaddress:80/ The staff client will be at http://ipaddress:8080/
 
 note: 80 and 8080 need to be replace to the external port use by docker for this two internal port ..
+
 (sample for staff login)[http://www.quantumobject.com:49162/]
+
 (sample for OPAC login)[http://www.quantumobject.com:49161/]
