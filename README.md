@@ -7,14 +7,14 @@ to run the container ...
 
 docker run -d -p 80 -p 8080 quantumobject/docker-koha
 
-need to run this command to check the password for user koha_library :
+need to wait for few second maybe 1 min to allow the installing conf to finish.
 
-need to wait for few second maybe 1 min to allow the installing conf to finish ...
+need to run this command to check the password for user koha_library :
 
 docker logs container_id
 
-and then use this password to log in with user name for the web install at http://ipaddress:8080/ 
-note: this password will be unique for your container. 
+and then use this password to log in with user name for the web install at http://ipaddress:8080/    
+note: this password will be unique for your container and need to use port assigned by docker to connect to 8080
 
 if this page show error 500 internal server error them need to execute this command :
 
@@ -49,3 +49,5 @@ docker exec -it container_id after_install
 The OPAC client will be at http://ipaddress:80/ The staff client will be at http://ipaddress:8080/
 
 note: 80 and 8080 need to be replace to the external port use by docker for this two internal port ..
+(sample for staff login)[http://www.quantumobject.com:49162/]
+(sample for OPAC login)[http://www.quantumobject.com:49161/]
