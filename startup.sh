@@ -22,6 +22,7 @@ else
         sleep 5s
         echo $(xmlstarlet sel -t -v 'yazgfs/config/pass' /etc/koha/sites/library/koha-conf.xml)
         #needed for fix problem with ubuntu and cron
+        koha-post-install-setup
         update-locale 
         date > /etc/configured
 fi
