@@ -4,6 +4,9 @@
 set -e
 
 if [ -f /etc/configured ]; then
+        a2enmod rewrite
+        a2enmod suexec
+        a2enmod cgi
         echo 'already configured'
 else
         #code that need to run only one time ....
