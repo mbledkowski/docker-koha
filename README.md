@@ -20,9 +20,7 @@ if this page show error 500 internal server error them need to execute this comm
 
 =====
 
-PID=$(docker inspect --format {{.State.Pid}} <container_name_or_ID>)
-
-nsenter --target $PID --mount --uts --ipc --net --pid
+docker exec -it container_id /bin/bash
 
 koha-post-install-setup   ===> repeat commmad to the point that apache2 reload and show ok and not fail .
 
