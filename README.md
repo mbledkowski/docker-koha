@@ -48,8 +48,7 @@ After the web install, you should be redirected to the staff client login screen
   - Select Administration.
   - Select Libraries, branches and groups under the “Basic Parameters” heading.
   - Click New Library and enter your information into the form.
-  - Click Submit. 
-Your Library is now setup in Koha.
+  - Click Submit. Your Library is now setup in Koha.
   - Create Group search domain and add to library
   - Create Group propieties and add to library 
   - Create a new patron for staff and give superuser permision and use this one for future login (from this point don't recomend to used the koha_library user not more).
@@ -62,7 +61,7 @@ The OPAC client will be at http://ipaddress:80/
 
 The staff client will be at http://ipaddress:8080/
 
-note: 80 and 8080 need to be replace to the external port use by docker for this two internal port ..
+note: 80 and 8080 need to be replace to the external port use by docker for this two internal port . If you need to restart the container for any reason, there is a chance that you need to reload Apache2 internally of the container to work again (still looking for a permanent solution of this problem)
 
 ## More Info
 
