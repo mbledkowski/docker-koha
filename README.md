@@ -1,53 +1,83 @@
-docker-koha
-===================
+# docker-koha
 
-Open-source integrated library system running on container. 
+Docker container for [koha 3.19.00][3]
 
-to run the container ...
+"Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
-docker run -d -p 80 -p 8080 quantumobject/docker-koha
+## Install dependencies
 
-need to wait for few second maybe 1 min to allow the installing conf to finish.
+  - [Docker][2]
 
-need to run this command to check the password for user koha_library :
+To install docker in Ubuntu 14.04 use the commands:
 
-docker logs container_id
+    $ sudo apt-get update
+    $ sudo apt-get install docker.io
 
-and then use this password to log in with user name for the web install at http://ipaddress:8080/    
-note: this password will be unique for your container and need to use port assigned by docker to connect to 8080
+ To install docker in other operating systems check [docker online documentation][4]
 
-if this page show error 500 internal server error them need to execute this command :
+## Usage
 
-=====
+To run container use the command below:
 
-docker exec -it container_id /bin/bash
+    $ docker run -d -p 80 -p 8080 quantumobject/docker-koha
 
-koha-post-install-setup   ===> repeat commmad to the point that apache2 reload and show ok and not fail .
+Them you need to wait for few second maybe 1 min to allow the installing conf to finish and run this command to check the password for user koha_library :
 
-exit
+    $ docker logs container_id
 
-=======
+## Accessing the Koha applications:
+
+After that check with your browser at addresses plus the port assigined by docker for correspoding port 8080:
+
+  - **http://host_ip:port/**
+  
+and then use this password to log in with user name koha_library for the web install if this page show error 500 internal server error them need to execute this command:
+
+    $ docker exec -it container_id /bin/bash
+    $ koha-post-install-setup
+    $ exit
+
+repeat commmad to the point that apache2 reload and show ok and not fail and try againg to access the web install procedure. I recomend if your fisrt time using Koha that choose all the options posible on the install , you will be able to remove stuff later. 
 
 After the web install, you should be redirected to the staff client login screen.
-Login with koha user name(koha_library) and password.
-Click on the More dropdown menu.
-Select Administration.
-Select Libraries, branches and groups under the “Basic Parameters” heading.
-Click New Library and enter your information into the form.
-Click Submit.
+
+## First Configuration of Koha:
+
+  - Login with koha user name(koha_library) and password.
+  - Click on the More dropdown menu.
+  - Select Administration.
+  - Select Libraries, branches and groups under the “Basic Parameters” heading.
+  - Click New Library and enter your information into the form.
+  - Click Submit. 
 Your Library is now setup in Koha.
-Create Group sear domain and add to library
-Create Group propieties and add to library 
-Create a new patron for staff and give superuser permision and use this one for future login (from this point don't recomend to used the koha_library user)
+  - Create Group search domain and add to library
+  - Create Group propieties and add to library 
+  - Create a new patron for staff and give superuser permision and use this one for future login (from this point don't recomend to used the koha_library user not more).
 
-Execute this command next :
+Execute this command next:
 
-docker exec -it container_id after_install
+    $ docker exec -it container_id after_install
 
-The OPAC client will be at http://ipaddress:80/ The staff client will be at http://ipaddress:8080/
+The OPAC client will be at http://ipaddress:80/ 
+
+The staff client will be at http://ipaddress:8080/
 
 note: 80 and 8080 need to be replace to the external port use by docker for this two internal port ..
 
-[sample for staff login](http://www.quantumobject.com:49162/)
+## More Info
 
-[sample for OPAC login](http://www.quantumobject.com:49161/)
+About Koha: [www.koha-community.org][1]
+
+To help improve this container [quantumobject/docker-koha][5]
+
+[Example for staff login][6]
+
+[Example for OPAC login][7]
+
+[1]:http://koha-community.org/
+[2]:https://www.docker.com
+[3]:http://koha-community.org/documentation/
+[4]:http://docs.docker.com
+[5]:https://github.com/QuantumObject/docker-koha
+[6]:http://www.quantumobject.com:49162/
+[7]:http://www.quantumobject.com:49161/
