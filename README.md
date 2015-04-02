@@ -51,8 +51,8 @@ After the web install, you should be redirected to the staff client login screen
   - Click Submit. Your Library is now setup in Koha.
   - Create Group search domain and add to library
   - Create Group propieties and add to library 
-  - Create a new patron for staff and give superuser permision and use this one for future login (from this point don't recomend to used the koha_library user not more).
-
+  - Create a new patron for staff and give superuser permision and use this one for future login (from this point I don't recomend to used the koha_library user again).
+ 
 Execute this command next:
 
     $ docker exec -it container_id after_install
