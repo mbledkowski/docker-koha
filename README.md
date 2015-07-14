@@ -65,9 +65,9 @@ note: 80 and 8080 need to be replace to the external port use by docker for this
 
 if you see problem with “500 Internal Server Error” you need to
 
-docker exec -it container_id /bin/bash
+    $ docker exec -it container_id /bin/bash
 
-/etc/init.d/apache2 restart ==> if fail do it again ..
+    $ /etc/init.d/apache2 restart ==> if fail do it again ..
 
 and them try to access it again. This happend the first time installed and when container been stop and started (like when rebooting the server)
 
