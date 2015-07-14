@@ -63,6 +63,15 @@ The staff client will be at http://ipaddress:8080/
 
 note: 80 and 8080 need to be replace to the external port use by docker for this two internal port . If you need to restart the container for any reason, there is a chance that you need to reload Apache2 internally of the container to work again (still looking for a permanent solution of this problem)
 
+if you see problem with “500 Internal Server Error” you need to
+
+docker exec -it container_id /bin/bash
+
+/etc/init.d/apache2 restart ==> if fail do it again ..
+
+and them try to access it again. This happend the first time installed and when container been stop and started (like when rebooting the server)
+
+
 ## More Info
 
 About Koha: [www.koha-community.org][1]
