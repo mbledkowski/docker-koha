@@ -1,5 +1,5 @@
 #name of container: docker-koha
-#versison of container: 0.1.1
+#versison of container: 0.1.2
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -27,7 +27,6 @@ RUN mkdir -p /etc/my_init.d
 COPY startup.sh /etc/my_init.d/startup.sh
 RUN chmod +x /etc/my_init.d/startup.sh
 
-
 ##Adding Deamons to containers
 # to add mysqld deamon to runit
 RUN mkdir /etc/service/mysqld
@@ -50,9 +49,6 @@ COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf \
     && /bin/bash -c /sbin/pre-conf \
     && rm /sbin/pre-conf
-
-#down/shutdown script ... use to be run in container before stop or shutdown .to keep service..good status..and maybe
-#backup or keep data integrity .. 
 
 ##scritp that can be running from the outside using docker-bash tool ...
 ## for example to create backup for database with convitation of VOLUME   dockers-bash container_ID backup_mysql
