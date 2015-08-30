@@ -1,11 +1,11 @@
 #name of container: docker-koha
-#versison of container: 0.1.2
+#versison of container: 0.1.3
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo deb http://debian.koha-community.org/koha squeeze-dev main | sudo tee /etc/apt/sources.list.d/koha.list
+RUN echo deb http://debian.koha-community.org/koha squeeze-dev main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | sudo apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu utopic-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -q apache2 \
