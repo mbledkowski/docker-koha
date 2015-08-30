@@ -7,5 +7,5 @@ set -e
  sed -i 's/INTRASUFFIX="-intra"/INTRASUFFIX=""/' /etc/koha/koha-sites.conf
  echo "Listen 8080" >> /etc/apache2/ports.conf
  #need to add this to others container using apache2
- echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf
+ echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf
  ln -s /etc/apache2/conf-available/fqdn.conf /etc/apache2/conf-enabled/fqdn.conf
