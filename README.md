@@ -82,6 +82,8 @@ To help improve this container [quantumobject/docker-koha][5]
 
 [Example for OPAC login][7]
 
+For additional info about us and our projects check our site [www.quantumobject.com][8]
+
 [1]:http://koha-community.org/
 [2]:https://www.docker.com
 [3]:http://koha-community.org/documentation/
@@ -89,3 +91,4 @@ To help improve this container [quantumobject/docker-koha][5]
 [5]:https://github.com/QuantumObject/docker-koha
 [6]:http://www.quantumobject.com:49162/
 [7]:http://www.quantumobject.com:49161/
+[8]:http://www.quantumobject.com/
