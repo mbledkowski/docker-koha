@@ -8,7 +8,7 @@ Docker container for [koha 3.21.00][3]
 
   - [Docker][2]
 
-To install docker in Ubuntu 14.04 use the commands:
+To install docker in Ubuntu 15.04 use the commands:
 
     $ sudo apt-get update
     $ wget -qO- https://get.docker.com/ | sh
@@ -68,6 +68,7 @@ note: 80 and 8080 need to be replace to the external port use by docker for this
 if you see problem with “500 Internal Server Error” you need to
 
     $ docker exec -it container_id /bin/bash
+    $ export TERM=xterm       #needed to execute some command correctly (nano,top)
 
     $ /etc/init.d/apache2 restart ==> if fail do it again ..
 
