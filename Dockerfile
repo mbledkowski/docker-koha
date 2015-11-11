@@ -10,6 +10,7 @@ RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
 RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
                                         mysql-server \
+                                        libdbicx-testdatabase-perl \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
