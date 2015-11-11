@@ -21,6 +21,8 @@ To run container use the command below:
 
     $ docker run -d -p 80 -p 8080 quantumobject/docker-koha
 
+note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
+
 Them you need to wait for few second maybe 1 min to allow the installing conf to finish and run this command to check the password for user koha_library :
 
     $ docker logs container_id
