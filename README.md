@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 3.21.00][3]
+Docker container for [koha 3.22.03][3]
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -81,17 +81,11 @@ About Koha: [www.koha-community.org][1]
 
 To help improve this container [quantumobject/docker-koha][5]
 
-[Example for staff login][6]
-
-[Example for OPAC login][7]
-
-For additional info about us and our projects check our site [www.quantumobject.com][8]
+For additional info about us and our projects check our site [www.quantumobject.org][8]
 
 [1]:http://koha-community.org/
 [2]:https://www.docker.com
 [3]:http://koha-community.org/documentation/
 [4]:http://docs.docker.com
 [5]:https://github.com/QuantumObject/docker-koha
-[6]:http://www.quantumobject.com:49162/
-[7]:http://www.quantumobject.com:49161/
-[8]:http://www.quantumobject.com/
+[8]:http://www.quantumobject.org/
