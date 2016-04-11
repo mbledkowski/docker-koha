@@ -1,13 +1,13 @@
 #name of container: docker-koha
-#versison of container: 0.2.1
+#versison of container: 0.3.1
 FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
-RUN echo deb http://debian.koha-community.org/koha squeeze-dev main | tee /etc/apt/sources.list.d/koha.list
+RUN echo deb http://debian.koha-community.org/koha stable main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
-RUN echo "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc)-backports main restricted " >> /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
                                         mysql-server \
                                         libdbicx-testdatabase-perl \
@@ -31,19 +31,31 @@ RUN chmod +x /etc/my_init.d/startup.sh
 
 ##Adding Deamons to containers
 # to add mysqld deamon to runit
-RUN mkdir /etc/service/mysqld
+RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
+RUN mkdir /etc/service/mysqld/log
 COPY mysqld.sh /etc/service/mysqld/run
-RUN chmod +x /etc/service/mysqld/run
+COPY mysqld-log.sh /etc/service/mysqld/log/run
+RUN chmod +x /etc/service/mysqld/run /etc/service/mysqld/log/run \
+    && cp /var/log/cron/config /var/log/mysqld/ \
+    && chown -R mysql /var/log/mysqld
 
 # to add apache2 deamon to runit
-RUN mkdir /etc/service/apache2
+RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
+RUN mkdir /etc/service/apache2/log
 COPY apache2.sh /etc/service/apache2/run
-RUN chmod +x /etc/service/apache2/run
+COPY apache2-log.sh /etc/service/apache2/log/run
+RUN chmod +x /etc/service/apache2/run /etc/service/apache2/log/run \
+    && cp /var/log/cron/config /var/log/apache2/ \
+    && chown -R www-data /var/log/apache2
 
 # to add zebra deamon to runit
-RUN mkdir /etc/service/zebra
+RUN mkdir -p /etc/service/zebra /var/log/zebra ; sync
+RUN mkdir -p /etc/service/zebra/log
 COPY zebra.sh /etc/service/zebra/run
-RUN chmod +x /etc/service/zebra/run
+COPY zebra-log.sh /etc/service/zebra/log/run
+RUN chmod +x /etc/service/zebra/run /etc/service/zebra/log/run \
+    && cp /var/log/cron/config /var/log/zebra/ \
+    && chown -R root /var/log/zebra
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld
