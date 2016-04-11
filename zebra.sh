@@ -1,6 +1,6 @@
 #!/bin/bash
 ### In zebra.sh (make sure this file is chmod +x):
-# `/sbin/setuser mysql` runs the given command as the user `mysql`.
+# `chpst -u root` runs the given command as the user `root`.
 # If you omit that part, the command will be run as root.
 
-exec koha-start-zebra library >>/var/log/zebra.log 2>&1
+exec chpst -u root koha-start-zebra library 2>&1
