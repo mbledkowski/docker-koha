@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-set -e
-
 if [ -f /etc/configured ]; then
         a2enmod rewrite
         a2enmod suexec
