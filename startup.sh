@@ -7,6 +7,7 @@ if [ -f /etc/configured ]; then
         echo 'already configured'
 else
         #code that need to run only one time ....
+        chown -R mysql:mysql /var/lib/mysql 
         /usr/bin/mysqld_safe &
         sleep 5s
                 a2enmod rewrite
