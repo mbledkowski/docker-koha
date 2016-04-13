@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 3.22.03][3]
+Docker container for [koha 3.22.05][3]
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -19,7 +19,7 @@ To install docker in Ubuntu 15.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d -p 80 -p 8080 quantumobject/docker-koha
+    $ docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80 -p 8080 quantumobject/docker-koha
 
 note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
 
@@ -68,9 +68,7 @@ note: 80 and 8080 need to be replace to the external port use by docker for this
 if you see problem with “500 Internal Server Error” you need to
 
     $ docker exec -it container_id /bin/bash
-    $ export TERM=xterm       #needed to execute some command correctly (nano,top)
-
-    $ /etc/init.d/apache2 restart ==> if fail do it again ..
+    $ /etc/init.d/apache2 restart ==> if fail, do it again ..
 
 and them try to access it again. This happend the first time installed and when container been stop and started (like when rebooting the server)
 
