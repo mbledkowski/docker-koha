@@ -3,7 +3,7 @@ set -e
 
  #apache2 conf
  #default ports /etc/apache2/ports.conf   need to add Listen 80  and 8080
- sed -i 's/ DOMAIN=".myDNSname.org"/ DOMAIN=""/' /etc/koha/koha-sites.conf
+ sed -i 's/DOMAIN=".myDNSname.org"/DOMAIN=""/' /etc/koha/koha-sites.conf
  sed -i 's/INTRAPORT="80"/INTRAPORT="8080"/' /etc/koha/koha-sites.conf
  sed -i 's/INTRASUFFIX="-intra"/INTRASUFFIX=""/' /etc/koha/koha-sites.conf
  echo "Listen 8080" >> /etc/apache2/ports.conf
