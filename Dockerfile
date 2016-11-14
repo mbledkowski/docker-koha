@@ -1,5 +1,5 @@
 #name of container: docker-koha
-#versison of container: 0.3.1
+#versison of container: 0.3.3
 FROM quantumobject/docker-baseimage:15.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -32,28 +32,22 @@ RUN chmod +x /etc/my_init.d/startup.sh
 ##Adding Deamons to containers
 # to add mysqld deamon to runit
 RUN mkdir -p /etc/service/mysqld /var/log/mysqld ; sync 
-RUN mkdir /etc/service/mysqld/log
 COPY mysqld.sh /etc/service/mysqld/run
-COPY mysqld-log.sh /etc/service/mysqld/log/run
-RUN chmod +x /etc/service/mysqld/run /etc/service/mysqld/log/run \
+RUN chmod +x /etc/service/mysqld/run \
     && cp /var/log/cron/config /var/log/mysqld/ \
     && chown -R mysql /var/log/mysqld
 
 # to add apache2 deamon to runit
 RUN mkdir -p /etc/service/apache2  /var/log/apache2 ; sync 
-RUN mkdir /etc/service/apache2/log
 COPY apache2.sh /etc/service/apache2/run
-COPY apache2-log.sh /etc/service/apache2/log/run
-RUN chmod +x /etc/service/apache2/run /etc/service/apache2/log/run \
+RUN chmod +x /etc/service/apache2/run \
     && cp /var/log/cron/config /var/log/apache2/ \
     && chown -R www-data /var/log/apache2
 
 # to add zebra deamon to runit
 RUN mkdir -p /etc/service/zebra /var/log/zebra ; sync
-RUN mkdir -p /etc/service/zebra/log
 COPY zebra.sh /etc/service/zebra/run
-COPY zebra-log.sh /etc/service/zebra/log/run
-RUN chmod +x /etc/service/zebra/run /etc/service/zebra/log/run \
+RUN chmod +x /etc/service/zebra/run \
     && cp /var/log/cron/config /var/log/zebra/ \
     && chown -R root /var/log/zebra
 
