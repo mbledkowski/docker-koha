@@ -45,15 +45,7 @@ After the web install, you should be redirected to the staff client login screen
 
 ## First Configuration of Koha:
 
-  - Login with koha user name(koha_library) and password.
-  - Click on the More dropdown menu.
-  - Select Administration.
-  - Select Libraries, branches and groups under the “Basic Parameters” heading.
-  - Click New Library and enter your information into the form.
-  - Click Submit. Your Library is now setup in Koha.
-  - Create Group search domain and add to library
-  - Create Group propieties and add to library 
-  - Create a new patron for staff and give superuser permision and use this one for future login (from this point I don't recomend to used the koha_library user again).
+  You need to follow the instruction from [https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login|https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login]
  
 Execute this command next:
 
