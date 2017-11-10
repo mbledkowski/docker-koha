@@ -1,15 +1,14 @@
 #name of container: docker-koha
 #versison of container: 0.3.3
-FROM quantumobject/docker-baseimage:15.04
+FROM quantumobject/docker-baseimage:16.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo deb http://debian.koha-community.org/koha stable main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
-RUN echo "deb http://archive.ubuntu.com/ubuntu `cat /etc/container_environment/DISTRIB_CODENAME`-backports main restricted " >> /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
-                                        mysql-server \
+                                        mariadb-server \
                                         libdbicx-testdatabase-perl \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
