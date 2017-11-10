@@ -45,7 +45,7 @@ After the web install, you should be redirected to the staff client login screen
 
 ## First Configuration of Koha:
 
-  You need to follow the instruction from [https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login|https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login]
+  You need to follow the instruction from [https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login]
  
 Execute this command next:
 
