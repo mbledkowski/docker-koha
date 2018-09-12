@@ -8,6 +8,8 @@ if [ -f /etc/configured ]; then
 else
         #code that need to run only one time ....
         chown -R mysql:mysql /var/lib/mysql 
+        #Initial conf for mysql
+        mysql_install_db
         /usr/bin/mysqld_safe &
         sleep 5s
                 a2enmod rewrite
