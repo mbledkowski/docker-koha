@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 17.05][3]
+Docker container for [koha 18.05][3]
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -8,7 +8,7 @@ Docker container for [koha 17.05][3]
 
   - [Docker][2]
 
-To install docker in Ubuntu 16.04 use the commands:
+To install docker in Ubuntu 18.04 use the commands:
 
     $ sudo apt-get update
     $ sudo wget -qO- https://get.docker.com/ | sh
