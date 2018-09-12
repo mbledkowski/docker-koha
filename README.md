@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 17.05][3]
+Docker container for [koha 18.05][3]
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -8,7 +8,7 @@ Docker container for [koha 17.05][3]
 
   - [Docker][2]
 
-To install docker in Ubuntu 16.04 use the commands:
+To install docker in Ubuntu 18.04 use the commands:
 
     $ sudo apt-get update
     $ sudo wget -qO- https://get.docker.com/ | sh
@@ -19,7 +19,7 @@ To install docker in Ubuntu 16.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80 -p 8080 quantumobject/docker-koha
+    $ docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 quantumobject/docker-koha
 
 note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
 
@@ -45,7 +45,7 @@ After the web install, you should be redirected to the staff client login screen
 
 ## First Configuration of Koha:
 
-  You need to follow the instruction from [https://koha-community.org/manual/17.05/html/01_installation.html#web-installer-login]
+  You need to follow the instruction from [https://koha-community.org/manual/18.05/html/01_installation.html#web-installer-login]
  
 Execute this command next:
 
