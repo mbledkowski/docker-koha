@@ -1,5 +1,5 @@
 #name of container: docker-koha
-#versison of container: 0.4.2
+#versison of container: 0.4.3
 FROM quantumobject/docker-baseimage:18.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
@@ -7,7 +7,7 @@ MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 #Installation of nesesary package/software for this containers...
 RUN echo deb http://debian.koha-community.org/koha stable main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apache2 \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apache2 \
                                         mariadb-server \
                                         libdbicx-testdatabase-perl \
                     && apt-get clean \
@@ -15,7 +15,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q apach
                     && rm -rf /var/lib/apt/lists/*
                     
 RUN apt-get update && a2dismod mpm_event && a2enmod mpm_prefork \
-                    && DEBIAN_FRONTEND=noninteractive apt-get install -f -y -q libapache2-mpm-itk \
+                    && DEBIAN_FRONTEND=noninteractive apt-get install -f -y -q --no-install-recommends libapache2-mpm-itk \
                                                                                 koha-common \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
@@ -56,12 +56,6 @@ COPY pre-conf.sh /sbin/pre-conf
 RUN chmod +x /sbin/pre-conf; sync  \
     && /bin/bash -c /sbin/pre-conf \
     && rm /sbin/pre-conf
-
-##scritp that can be running from the outside using docker-bash tool ...
-## for example to create backup for database with convitation of VOLUME   dockers-bash container_ID backup_mysql
-COPY backup.sh /sbin/backup
-RUN chmod +x /sbin/backup
-VOLUME /var/backups
 
 #script to execute after install configuration done ....
 COPY after_install.sh /sbin/after_install
