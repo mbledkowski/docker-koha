@@ -10,8 +10,8 @@ Docker container for [koha 19.11][3]
 
 To install docker in Ubuntu 18.04 use the commands:
 
-    $ sudo apt-get update
-    $ sudo wget -qO- https://get.docker.com/ | sh
+    sudo apt-get update
+    sudo wget -qO- https://get.docker.com/ | sh
 
  To install docker in other operating systems check [docker online documentation][4]
 
@@ -19,13 +19,13 @@ To install docker in Ubuntu 18.04 use the commands:
 
 To run container use the command below:
 
-    $ docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 quantumobject/docker-koha
+    docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 --name koha quantumobject/docker-koha
 
 note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
 
 Them you need to wait for few second maybe 1 min to allow the installing conf to finish and run this command to check the password for user koha_library :
 
-    $ docker logs container_id
+    docker logs container_id
 
 ## Accessing the Koha applications:
 
@@ -35,9 +35,9 @@ After that check with your browser at addresses plus the port assigined by docke
   
 and then use this password to log in with user name koha_library for the web install if this page show error 500 internal server error them need to execute this command:
 
-    $ docker exec -it container_id /bin/bash
-    $ koha-post-install-setup
-    $ exit
+    docker exec -it container_id /bin/bash
+    koha-post-install-setup
+    exit
 
 repeat commmad to the point that apache2 reload and show ok and not fail and try againg to access the web install procedure. I recomend if your fisrt time using Koha that choose all the options posible on the install , you will be able to remove stuff later. 
 
@@ -49,7 +49,7 @@ After the web install, you should be redirected to the staff client login screen
  
 Execute this command next:
 
-    $ docker exec -it container_id after_install
+    docker exec -it container_id after_install
 
 The OPAC client will be at http://ipaddress:80/ 
 
@@ -59,8 +59,8 @@ note: 80 and 8080 need to be replace to the external port use by docker for this
 
 if you see problem with “500 Internal Server Error” you need to
 
-    $ docker exec -it container_id /bin/bash
-    $ /etc/init.d/apache2 restart ==> if fail, do it again ..
+    docker exec -it container_id /bin/bash
+    /etc/init.d/apache2 restart ==> if fail, do it again ..
 
 and them try to access it again. This happend the first time installed and when container been stop and started (like when rebooting the server)
 
