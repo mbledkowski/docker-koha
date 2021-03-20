@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 19.11][3]
+Docker container for [koha 20.11][3]
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -45,7 +45,7 @@ After the web install, you should be redirected to the staff client login screen
 
 ## First Configuration of Koha:
 
-  You need to follow the instruction from [https://koha-community.org/manual/19.11/en/html/installation.html#web-installer]
+  You need to follow the instruction from [https://koha-community.org/manual/20.11/en/html/installation.html#web-installer]
  
 Execute this command next:
 
