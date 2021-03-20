@@ -8,7 +8,7 @@ Docker container for [koha 20.11][3]
 
   - [Docker][2]
 
-To install docker in Ubuntu 18.04 use the commands:
+To install docker in Ubuntu 20.04 use the commands:
 
     sudo apt-get update
     sudo wget -qO- https://get.docker.com/ | sh
@@ -19,7 +19,7 @@ To install docker in Ubuntu 18.04 use the commands:
 
 To run container use the command below:
 
-    docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 --name koha quantumobject/docker-koha
+    docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 --name koha quantumobject/docker-koha
 
 note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
 
