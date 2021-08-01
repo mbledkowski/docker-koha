@@ -1,6 +1,6 @@
 # docker-koha
 
-Docker container for [koha 20.11][3]
+Docker container for [koha 20.11][3] modified by @mbledkowski, fork of QuantumObject/docker-koha.
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
