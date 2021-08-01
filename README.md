@@ -1,6 +1,7 @@
 # docker-koha
 
-Docker container for [koha 20.11][3]
+Docker container for [koha 20.11][3] modified by @mbledkowski, fork of QuantumObject/docker-koha.
+I had set up automatic backup (with mysqldump + cron) that is saved inside /database. This folder should be connected with volume.
 
 "Koha Library Software:The world's first free and open source library system. Koha is a fully featured, scalable library management system. Development is sponsored by libraries of varying types and sizes, volunteers, and support companies worldwide."
 
@@ -17,9 +18,15 @@ To install docker in Ubuntu 20.04 use the commands:
 
 ## Usage
 
+Before running the container you need to create koha-database volume:
+
+    docker volume create --name=koha_database
+    
+If you have existing backup of MySQL database, move it into volume with the name `koha_library.sql`.
+
 To run container use the command below:
 
-    docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 --name koha quantumobject/docker-koha
+    docker run -d --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH -p 80:80 -p 8080:8080 -v koha_database:/database --name koha quantumobject/docker-koha
 
 note: koha used  Apache/mpm itk that create some problem under docker, there are some sites that recommend to add this to pre-view command :   --cap-add=SYS_NICE --cap-add=DAC_READ_SEARCH
 
