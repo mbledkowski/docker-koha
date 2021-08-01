@@ -1,7 +1,7 @@
-#name of container: docker-koha
-#versison of container: 0.4.3
+#name of container: koha
+#version of container: 0.5.0
 FROM quantumobject/docker-baseimage:20.04
-#MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
+MAINTAINER Maciej Błędkowski "23295125+mbledkowski@users.noreply.github.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
@@ -50,6 +50,7 @@ RUN chmod +x /etc/service/zebra/run \
     && cp /var/log/cron/config /var/log/zebra/ \
     && chown -R root /var/log/zebra
 
+# add cronjob that automatically creates database dump every hour
 COPY cron /etc/cron.hourly/cron
 RUN chmod +x /etc/cron.hourly/cron
 
