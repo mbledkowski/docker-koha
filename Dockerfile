@@ -1,10 +1,12 @@
 #name of container: koha
 #version of container: 0.5.0
-FROM quantumobject/docker-baseimage:20.04
-MAINTAINER Maciej Błędkowski "23295125+mbledkowski@users.noreply.github.com"
+#FROM quantumobject/docker-baseimage:20.04
+FROM mbledkowski/baseimage:latest
+LABEL maintainer="Maciej Błędkowski @mbledkowski"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
+RUN apt-get update && apt-get install -y gnupg
 RUN echo deb http://debian.koha-community.org/koha stable main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apache2 \
