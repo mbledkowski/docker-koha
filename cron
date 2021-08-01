@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mysqldump -u root -pmysqlpsswd koha_library > koha_library_old.sql
+koha-rebuild-zebra -v -f library

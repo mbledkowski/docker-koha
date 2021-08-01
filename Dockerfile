@@ -1,25 +1,25 @@
 #name of container: docker-koha
 #versison of container: 0.4.3
 FROM quantumobject/docker-baseimage:20.04
-MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
+#MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
 RUN echo deb http://debian.koha-community.org/koha stable main | tee /etc/apt/sources.list.d/koha.list
 RUN wget -O- http://debian.koha-community.org/koha/gpg.asc | apt-key add -
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends apache2 \
-                                        mariadb-server \
-                                        libdbicx-testdatabase-perl \
-                    && apt-get clean \
-                    && rm -rf /tmp/* /var/tmp/*  \
-                    && rm -rf /var/lib/apt/lists/*
-                    
+    mariadb-server \
+    libdbicx-testdatabase-perl \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/tmp/*  \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update && a2dismod mpm_event && a2enmod mpm_prefork \
-                    && DEBIAN_FRONTEND=noninteractive apt-get install -f -y -q --no-install-recommends libapache2-mpm-itk \
-                                                                                koha-common \
-                    && apt-get clean \
-                    && rm -rf /tmp/* /var/tmp/*  \
-                    && rm -rf /var/lib/apt/lists/*
+    && DEBIAN_FRONTEND=noninteractive apt-get install -f -y -q --no-install-recommends libapache2-mpm-itk \
+    koha-common \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/tmp/*  \
+    && rm -rf /var/lib/apt/lists/*
 
 ##startup script
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
@@ -49,6 +49,9 @@ COPY zebra.sh /etc/service/zebra/run
 RUN chmod +x /etc/service/zebra/run \
     && cp /var/log/cron/config /var/log/zebra/ \
     && chown -R root /var/log/zebra
+
+COPY cron /etc/cron.hourly/cron
+RUN chmod +x /etc/cron.hourly/cron
 
 #pre-config scritp for different service that need to be run when container image is create 
 #maybe include additional software that need to be installed ... with some service running ... like example mysqld

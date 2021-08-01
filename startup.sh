@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt update -y
+apt full-upgrade -y
+
 if [ -f /etc/configured ]; then
         a2enmod rewrite
         a2enmod suexec
@@ -19,6 +22,16 @@ else
                 #security tweak
                 mysqladmin -u root password mysqlpsswd
                 mysqladmin -u root -pmysqlpsswd reload
+                echo 'it works'
+                if [ -f /database/koha_library.sql ]
+                then
+                        mysql -u root -pmysqlpsswd -e "drop database koha_library"
+                        mysql -u root -pmysqlpsswd -e "create database koha_library"
+                        mysql -u root -pmysqlpsswd koha_library < /database/koha_library.sql
+                        koha-upgrade-schema library
+                        koha-rebuild-zebra -v -f library
+                        echo 'database imported'
+                fi
                 a2dissite 000-default
                 rm -R /var/www/html/
         killall mysqld mysqld_safe
